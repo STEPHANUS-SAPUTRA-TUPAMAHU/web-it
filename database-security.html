@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Database &amp; Security — IT Theory</title>
+  <meta name="description" content="Materi database dan keamanan: SQL vs NoSQL, normalisasi database, dasar cybersecurity, dan enkripsi." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="antialiased">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="fixed top-0 inset-x-0 z-50">
+    <nav class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="mt-4 flex items-center justify-between rounded-2xl card-glass px-4 py-3 shadow-2xl shadow-black/40">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-600 to-fuchsia-600 grid place-items-center text-white shadow-lg shadow-fuchsia-600/30 group-hover:rotate-6 transition-transform">
+            <i data-lucide="GraduationCap" class="w-5 h-5"></i>
+          </span>
+          <span class="font-bold text-lg">IT<span class="text-gradient">Theory</span></span>
+        </a>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="index.html" class="px-4 py-2 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Beranda</a>
+          <a href="teori-dasar.html" class="px-4 py-2 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Teori Dasar</a>
+          <a href="pemrograman.html" class="px-4 py-2 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Pemrograman</a>
+          <a href="database-security.html" class="px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-rose-500 to-red-600 text-white shadow-lg shadow-rose-600/25">DB &amp; Security</a>
+          <a href="trends.html" class="px-4 py-2 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Trends</a>
+        </div>
+        <button id="nav-toggle" class="md:hidden w-10 h-10 rounded-xl grid place-items-center text-slate-300 hover:bg-white/10 transition-colors" aria-label="Menu">
+          <i data-icon="menu" data-lucide="Menu" class="w-5 h-5"></i>
+          <i data-icon="close" data-lucide="X" class="w-5 h-5 hidden"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- mobile menu -->
+  <div id="nav-menu" class="hidden md:hidden fixed inset-x-0 top-[72px] z-40 px-4">
+    <div class="card-glass rounded-2xl p-2 flex flex-col gap-1 shadow-2xl shadow-black/50">
+      <a href="index.html" class="px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Beranda</a>
+      <a href="teori-dasar.html" class="px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Teori Dasar</a>
+      <a href="pemrograman.html" class="px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Pemrograman</a>
+      <a href="database-security.html" class="px-4 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-rose-500 to-red-600 text-white">DB &amp; Security</a>
+      <a href="trends.html" class="px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Trends</a>
+    </div>
+  </div>
+
+  <!-- ===================== HERO KATEGORI ===================== -->
+  <section class="relative pt-32 pb-14 overflow-hidden">
+    <div class="absolute inset-0 bg-grid"></div>
+    <div class="absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-rose-600/20 blur-[110px] animate-floaty"></div>
+    <div class="absolute top-1/2 -right-24 w-[350px] h-[350px] rounded-full bg-red-600/15 blur-[110px] animate-floaty-slow"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <nav class="reveal flex items-center gap-2 text-sm text-slate-400" aria-label="Breadcrumb">
+        <a href="index.html" class="flex items-center gap-1.5 hover:text-rose-400 transition-colors"><i data-lucide="Home" class="w-4 h-4"></i> Beranda</a>
+        <i data-lucide="ChevronRight" class="w-4 h-4"></i>
+        <span class="text-rose-400 font-medium">Database &amp; Security</span>
+      </nav>
+
+      <div class="mt-8 flex items-start gap-5 flex-col sm:flex-row sm:items-center">
+        <span class="reveal w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-gradient-to-br from-rose-500 to-red-600 grid place-items-center text-white shadow-2xl shadow-rose-600/30 shrink-0">
+          <i data-lucide="ShieldCheck" class="w-9 h-9"></i>
+        </span>
+        <div>
+          <h1 class="reveal text-3xl sm:text-5xl font-extrabold">Database &amp; <span class="text-gradient">Security</span></h1>
+          <p class="reveal mt-3 text-slate-400 max-w-2xl leading-relaxed">Bekal penting pengelola data dan pertahanan dari serangan siber. Klik tiap topik untuk membuka penjelasannya.</p>
+        </div>
+      </div>
+
+      <div class="reveal mt-6 flex flex-wrap gap-2 text-sm">
+        <span class="px-3 py-1 rounded-full bg-rose-500/10 text-rose-300 border border-rose-500/20">4 topik</span>
+        <span class="px-3 py-1 rounded-full bg-rose-500/10 text-rose-300 border border-rose-500/20">Level: Menengah</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MATERI ===================== -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" data-stagger>
+
+      <!-- SQL vs NoSQL -->
+      <article class="accordion-item reveal card-glass rounded-3xl overflow-hidden">
+        <button class="accordion-head w-full flex items-center gap-4 p-6 text-left hover:bg-white/[.03] transition-colors">
+          <span class="icon-box w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-rose-500 to-red-600 grid place-items-center text-white shadow-lg shadow-rose-600/25">
+            <i data-lucide="Braces" class="w-6 h-6"></i>
+          </span>
+          <span class="flex-1 min-w-0">
+            <span class="block font-bold text-lg leading-snug">SQL vs NoSQL</span>
+            <span class="block text-sm text-slate-400 mt-0.5">Dua dunia database: terstruktur ketat vs fleksibel meledak.</span>
+          </span>
+          <i data-lucide="ChevronDown" class="chevron w-5 h-5 text-slate-400 shrink-0"></i>
+        </button>
+        <div class="accordion-body">
+          <div>
+            <div class="px-6 pb-6 pt-1 border-t border-white/10">
+              <p class="mt-4 text-slate-300 leading-relaxed">SQL memakai tabel dan relasi dengan skema tetap, sedangkan <strong class="text-rose-300">NoSQL</strong> menyimpan data dalam beragam model dengan skema dinamis.</p>
+              <ul class="mt-5 space-y-2.5 text-sm text-slate-400">
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">SQL</strong> — MySQL, PostgreSQL, Oracle; kuat untuk transaksi dan laporan dengan JOIN.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Document</strong> — MongoDB; data dalam bentuk JSON yang fleksibel.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Key-Value</strong> — Redis; sangat cepat untuk cache dan sesi.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Column &amp; Graph</strong> — Cassandra untuk skala besar, Neo4j untuk relasi kompleks.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Kapan memilih</strong> — SQL untuk data sangat terstruktur dan transaksi; NoSQL untuk data tak terstruktur dan skala besar.</span></li>
+              </ul>
+              <div class="mt-5 rounded-2xl bg-rose-500/10 border border-rose-500/20 p-4 text-sm">
+                <p class="font-semibold text-rose-300 flex items-center gap-1.5"><i data-lucide="Lightbulb" class="w-4 h-4"></i> Mnemonic</p>
+                <p class="mt-1.5 text-slate-300">SQL untuk keseragaman, NoSQL untuk fleksibilitas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Normalisasi -->
+      <article class="accordion-item reveal card-glass rounded-3xl overflow-hidden">
+        <button class="accordion-head w-full flex items-center gap-4 p-6 text-left hover:bg-white/[.03] transition-colors">
+          <span class="icon-box w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-orange-500 to-rose-600 grid place-items-center text-white shadow-lg shadow-orange-600/25">
+            <i data-lucide="Table2" class="w-6 h-6"></i>
+          </span>
+          <span class="flex-1 min-w-0">
+            <span class="block font-bold text-lg leading-snug">Normalisasi Database</span>
+            <span class="block text-sm text-slate-400 mt-0.5">Seni merapikan tabel agar bebas data ganda dan anomali.</span>
+          </span>
+          <i data-lucide="ChevronDown" class="chevron w-5 h-5 text-slate-400 shrink-0"></i>
+        </button>
+        <div class="accordion-body">
+          <div>
+            <div class="px-6 pb-6 pt-1 border-t border-white/10">
+              <p class="mt-4 text-slate-300 leading-relaxed">Normalisasi menghilangkan <strong class="text-rose-300">redundansi</strong> (data ganda) dengan memecah tabel menjadi tabel-tabel yang lebih bersih dan saling berelasi.</p>
+              <ul class="mt-5 space-y-2.5 text-sm text-slate-400">
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">1NF</strong> — tiap sel berisi satu nilai (atomic); buang kolom yang berulang.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">2NF</strong> — singkirkan ketergantungan parsial ke sebagian kunci.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">3NF</strong> — singkirkan ketergantungan transitif (kolom tergantung kolom non-kunci).</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Anomali yang dicegah</strong> — insert, update, dan delete yang merusak konsistensi data.</span></li>
+              </ul>
+              <div class="mt-5 rounded-2xl bg-rose-500/10 border border-rose-500/20 p-4 text-sm">
+                <p class="font-semibold text-rose-300 flex items-center gap-1.5"><i data-lucide="Lightbulb" class="w-4 h-4"></i> Aturan emas</p>
+                <p class="mt-1.5 text-slate-300">Kalau kamu mulai copy-paste data yang sama di banyak baris? Itu tanda belum normal.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <!-- Cybersecurity -->
+      <article class="accordion-item reveal card-glass rounded-3xl overflow-hidden">
+        <button class="accordion-head w-full flex items-center gap-4 p-6 text-left hover:bg-white/[.03] transition-colors">
+          <span class="icon-box w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-red-500 to-rose-600 grid place-items-center text-white shadow-lg shadow-red-600/25">
+            <i data-lucide="Shield" class="w-6 h-6"></i>
+          </span>
+          <span class="flex-1 min-w-0">
+            <span class="block font-bold text-lg leading-snug">Dasar Cybersecurity</span>
+            <span class="block text-sm text-slate-400 mt-0.5">Menjaga kerahasiaan, integritas, dan ketersediaan data.</span>
+          </span>
+          <i data-lucide="ChevronDown" class="chevron w-5 h-5 text-slate-400 shrink-0"></i>
+        </button>
+        <div class="accordion-body">
+          <div>
+            <div class="px-6 pb-6 pt-1 border-t border-white/10">
+              <p class="mt-4 text-slate-300 leading-relaxed">Cybersecurity melindungi sistem, jaringan, dan data dari serangan digital. Konsep intinya disebut <strong class="text-rose-300">CIA Triad</strong>.</p>
+              <ul class="mt-5 space-y-2.5 text-sm text-slate-400">
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Confidentiality</strong> — data hanya diakses pihak berwenang (enkripsi, ACL).</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Integrity</strong> — data tidak diubah tanpa izin (hash, tanda tangan digital).</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Availability</strong> — sistem tetap berjalan (backup, proteksi DDoS).</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Ancaman umum</strong> — phishing, malware, SQL injection, brute force, social engineering.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Praktik baik</strong> — password kuat + 2FA, update rutin, prinsip least-privilege.</span></li>
+              </ul>
+              <div class="mt-5 rounded-2xl bg-rose-500/10 border border-rose-500/20 p-4 text-sm">
+                <p class="font-semibold text-rose-300 flex items-center gap-1.5"><i data-lucide="Lightbulb" class="w-4 h-4"></i> Waspada</p>
+                <p class="mt-1.5 text-slate-300">Tautan &quot;bank&quot; yang meminta OTP adalah phishing. Baca alamat situsnya dulu, jangan asal klik.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Enkripsi -->
+      <article class="accordion-item reveal card-glass rounded-3xl overflow-hidden">
+        <button class="accordion-head w-full flex items-center gap-4 p-6 text-left hover:bg-white/[.03] transition-colors">
+          <span class="icon-box w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 grid place-items-center text-white shadow-lg shadow-pink-600/25">
+            <i data-lucide="KeyRound" class="w-6 h-6"></i>
+          </span>
+          <span class="flex-1 min-w-0">
+            <span class="block font-bold text-lg leading-snug">Enkripsi &amp; Keamanan Data</span>
+            <span class="block text-sm text-slate-400 mt-0.5">Mengubah data jadi kode rahasia untuk pemegang kunci saja.</span>
+          </span>
+          <i data-lucide="ChevronDown" class="chevron w-5 h-5 text-slate-400 shrink-0"></i>
+        </button>
+        <div class="accordion-body">
+          <div>
+            <div class="px-6 pb-6 pt-1 border-t border-white/10">
+              <p class="mt-4 text-slate-300 leading-relaxed">Enkripsi melindungi kerahasiaan data saat disimpan maupun dikirim, dengan mengubah <strong class="text-rose-300">plaintext</strong> menjadi <strong class="text-rose-300">ciphertext</strong>.</p>
+              <ul class="mt-5 space-y-2.5 text-sm text-slate-400">
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Simetris</strong> — satu kunci untuk enkripsi &amp; dekripsi; cepat (AES, DES).</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Asimetris</strong> — sepasang kunci publik &amp; privat; dipakai RSA, PGP, HTTPS.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Hashing</strong> — satu arah dan tak bisa dibalik; untuk penyimpanan password (bcrypt, SHA-256).</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-rose-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Dunia nyata</strong> — HTTPS, VPN, dan e-wallet memakai kombinasi teknik ini.</span></li>
+              </ul>
+              <div class="mt-5 rounded-2xl bg-rose-500/10 border border-rose-500/20 p-4 text-sm">
+                <p class="font-semibold text-rose-300 flex items-center gap-1.5"><i data-lucide="Lightbulb" class="w-4 h-4"></i> Best practice</p>
+                <p class="mt-1.5 text-slate-300">Simpan password cukup dengan hash + salt. Jangan pernah menyimpan password dalam bentuk plaintext.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ===================== TOPIK LAIN ===================== -->
+    <div class="mt-16 rounded-3xl card-glass p-6 sm:p-8">
+      <h3 class="reveal font-bold text-lg flex items-center gap-2"><i data-lucide="FolderKanban" class="w-5 h-5 text-rose-400"></i> Lanjut ke kategori lain</h3>
+      <div class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-4" data-stagger>
+        <a href="teori-dasar.html" class="reveal hover-lift rounded-2xl bg-white/[.03] border border-white/10 p-5 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 grid place-items-center text-white shrink-0"><i data-lucide="Network" class="w-5 h-5"></i></span>
+          <span class="font-semibold text-sm">Teori Dasar IT</span>
+          <i data-lucide="ArrowRight" class="w-4 h-4 text-slate-500 ml-auto shrink-0"></i>
+        </a>
+        <a href="pemrograman.html" class="reveal hover-lift rounded-2xl bg-white/[.03] border border-white/10 p-5 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-violet-600 grid place-items-center text-white shrink-0"><i data-lucide="Code2" class="w-5 h-5"></i></span>
+          <span class="font-semibold text-sm">Pemrograman</span>
+          <i data-lucide="ArrowRight" class="w-4 h-4 text-slate-500 ml-auto shrink-0"></i>
+        </a>
+        <a href="trends.html" class="reveal hover-lift rounded-2xl bg-white/[.03] border border-white/10 p-5 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 grid place-items-center text-white shrink-0"><i data-lucide="Rocket" class="w-5 h-5"></i></span>
+          <span class="font-semibold text-sm">Tren Teknologi</span>
+          <i data-lucide="ArrowRight" class="w-4 h-4 text-slate-500 ml-auto shrink-0"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- ===================== PAGINATION ===================== -->
+    <div class="mt-8 flex flex-col sm:flex-row items-stretch justify-between gap-4">
+      <a href="pemrograman.html" class="reveal group inline-flex items-center gap-3 rounded-2xl card-glass px-6 py-4 hover:bg-white/[.06] transition-colors">
+        <span class="w-10 h-10 rounded-xl bg-white/5 grid place-items-center text-slate-300 group-hover:-translate-x-1 transition-transform"><i data-lucide="ChevronLeft" class="w-5 h-5"></i></span>
+        <span class="text-sm"><span class="block text-slate-500">Halaman sebelumnya</span><span class="block font-semibold">Pemrograman</span></span>
+      </a>
+      <a href="trends.html" class="reveal group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-rose-500 to-red-600 px-6 py-4 text-white shadow-lg shadow-rose-600/30 hover:-translate-y-0.5 transition-transform justify-end">
+        <span class="text-sm text-right"><span class="block text-rose-100">Halaman berikutnya</span><span class="block font-semibold">Tren Teknologi</span></span>
+        <span class="w-10 h-10 rounded-xl bg-white/15 grid place-items-center group-hover:translate-x-1 transition-transform"><i data-lucide="ChevronRight" class="w-5 h-5"></i></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a href="index.html" class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-fuchsia-600 grid place-items-center text-white">
+            <i data-lucide="GraduationCap" class="w-4 h-4"></i>
+          </span>
+          <span class="font-bold">IT<span class="text-gradient">Theory</span></span>
+        </a>
+        <p class="text-sm text-slate-500">Belajar teori IT dengan cara yang asyik.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- back to top -->
+  <button id="back-to-top" aria-label="Kembali ke atas"
+    class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500 to-red-600 text-white grid place-items-center shadow-xl shadow-rose-600/30 opacity-0 pointer-events-none transition-all duration-300 hover:-translate-y-1">
+    <i data-lucide="ChevronUp" class="w-5 h-5"></i>
+  </button>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

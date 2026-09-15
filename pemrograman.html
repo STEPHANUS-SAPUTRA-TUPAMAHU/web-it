@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pemrograman — IT Theory</title>
+  <meta name="description" content="Materi pemrograman: algoritma & pseudocode, struktur data, paradigma OOP, dan design pattern." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="antialiased">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="fixed top-0 inset-x-0 z-50">
+    <nav class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="mt-4 flex items-center justify-between rounded-2xl card-glass px-4 py-3 shadow-2xl shadow-black/40">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-600 to-fuchsia-600 grid place-items-center text-white shadow-lg shadow-fuchsia-600/30 group-hover:rotate-6 transition-transform">
+            <i data-lucide="GraduationCap" class="w-5 h-5"></i>
+          </span>
+          <span class="font-bold text-lg">IT<span class="text-gradient">Theory</span></span>
+        </a>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="index.html" class="px-4 py-2 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Beranda</a>
+          <a href="teori-dasar.html" class="px-4 py-2 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Teori Dasar</a>
+          <a href="pemrograman.html" class="px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-purple-500 to-violet-600 text-white shadow-lg shadow-purple-600/25">Pemrograman</a>
+          <a href="database-security.html" class="px-4 py-2 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">DB &amp; Security</a>
+          <a href="trends.html" class="px-4 py-2 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Trends</a>
+        </div>
+        <button id="nav-toggle" class="md:hidden w-10 h-10 rounded-xl grid place-items-center text-slate-300 hover:bg-white/10 transition-colors" aria-label="Menu">
+          <i data-icon="menu" data-lucide="Menu" class="w-5 h-5"></i>
+          <i data-icon="close" data-lucide="X" class="w-5 h-5 hidden"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- mobile menu -->
+  <div id="nav-menu" class="hidden md:hidden fixed inset-x-0 top-[72px] z-40 px-4">
+    <div class="card-glass rounded-2xl p-2 flex flex-col gap-1 shadow-2xl shadow-black/50">
+      <a href="index.html" class="px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Beranda</a>
+      <a href="teori-dasar.html" class="px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Teori Dasar</a>
+      <a href="pemrograman.html" class="px-4 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-purple-500 to-violet-600 text-white">Pemrograman</a>
+      <a href="database-security.html" class="px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">DB &amp; Security</a>
+      <a href="trends.html" class="px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors">Trends</a>
+    </div>
+  </div>
+
+  <!-- ===================== HERO KATEGORI ===================== -->
+  <section class="relative pt-32 pb-14 overflow-hidden">
+    <div class="absolute inset-0 bg-grid"></div>
+    <div class="absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-purple-600/20 blur-[110px] animate-floaty"></div>
+    <div class="absolute top-1/2 -right-24 w-[350px] h-[350px] rounded-full bg-fuchsia-600/15 blur-[110px] animate-floaty-slow"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <nav class="reveal flex items-center gap-2 text-sm text-slate-400" aria-label="Breadcrumb">
+        <a href="index.html" class="flex items-center gap-1.5 hover:text-purple-400 transition-colors"><i data-lucide="Home" class="w-4 h-4"></i> Beranda</a>
+        <i data-lucide="ChevronRight" class="w-4 h-4"></i>
+        <span class="text-purple-400 font-medium">Pemrograman</span>
+      </nav>
+
+      <div class="mt-8 flex items-start gap-5 flex-col sm:flex-row sm:items-center">
+        <span class="reveal w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-gradient-to-br from-purple-500 to-violet-600 grid place-items-center text-white shadow-2xl shadow-purple-600/30 shrink-0">
+          <i data-lucide="Code2" class="w-9 h-9"></i>
+        </span>
+        <div>
+          <h1 class="reveal text-3xl sm:text-5xl font-extrabold"><span class="text-gradient">Pemrograman</span></h1>
+          <p class="reveal mt-3 text-slate-400 max-w-2xl leading-relaxed">Dari logika dasar sampai arsitektur kode yang dipakai developer profesional. Klik tiap topik untuk membuka penjelasannya.</p>
+        </div>
+      </div>
+
+      <div class="reveal mt-6 flex flex-wrap gap-2 text-sm">
+        <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">4 topik</span>
+        <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">Level: Semua</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MATERI ===================== -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" data-stagger>
+
+      <!-- Algoritma -->
+      <article class="accordion-item reveal card-glass rounded-3xl overflow-hidden">
+        <button class="accordion-head w-full flex items-center gap-4 p-6 text-left hover:bg-white/[.03] transition-colors">
+          <span class="icon-box w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-600 grid place-items-center text-white shadow-lg shadow-purple-600/25">
+            <i data-lucide="Lightbulb" class="w-6 h-6"></i>
+          </span>
+          <span class="flex-1 min-w-0">
+            <span class="block font-bold text-lg leading-snug">Algoritma &amp; Pseudocode</span>
+            <span class="block text-sm text-slate-400 mt-0.5">Langkah logis untuk menyelesaikan masalah sebelum jadi kode.</span>
+          </span>
+          <i data-lucide="ChevronDown" class="chevron w-5 h-5 text-slate-400 shrink-0"></i>
+        </button>
+        <div class="accordion-body">
+          <div>
+            <div class="px-6 pb-6 pt-1 border-t border-white/10">
+              <p class="mt-4 text-slate-300 leading-relaxed">Algoritma adalah urutan instruksi yang jelas dan terbatas untuk menyelesaikan masalah. <strong class="text-purple-300">Pseudocode</strong> menuliskan logika itu memakai campuran bahasa manusia dan sintaks ringan.</p>
+              <ul class="mt-5 space-y-2.5 text-sm text-slate-400">
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Input, Proses, Output</strong> — struktur dasar setiap algoritma.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Flowchart</strong> — visualisasi algoritma; oval = mulai/selesai, jajar genjang = input, persegi = proses, wajik = keputusan.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Contoh pseudocode</strong> — <code class="text-purple-300">IF nilai &ge; 75 THEN lulus ELSE ulang.</code></span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Ciri algoritma baik</strong> — jelas, efektif, efisien, dan memiliki batas langkah.</span></li>
+              </ul>
+              <div class="mt-5 rounded-2xl bg-purple-500/10 border border-purple-500/20 p-4 text-sm">
+                <p class="font-semibold text-purple-300 flex items-center gap-1.5"><i data-lucide="Lightbulb" class="w-4 h-4"></i> Tips</p>
+                <p class="mt-1.5 text-slate-300">Tulis pseudocode dulu sebelum mengetik kode — sebagian besar error muncul karena langsung coding tanpa rencana.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Struktur Data -->
+      <article class="accordion-item reveal card-glass rounded-3xl overflow-hidden">
+        <button class="accordion-head w-full flex items-center gap-4 p-6 text-left hover:bg-white/[.03] transition-colors">
+          <span class="icon-box w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-fuchsia-500 to-purple-600 grid place-items-center text-white shadow-lg shadow-fuchsia-600/25">
+            <i data-lucide="Boxes" class="w-6 h-6"></i>
+          </span>
+          <span class="flex-1 min-w-0">
+            <span class="block font-bold text-lg leading-snug">Struktur Data</span>
+            <span class="block text-sm text-slate-400 mt-0.5">Cara menyimpan dan mengorganisasi data agar efisien diakses.</span>
+          </span>
+          <i data-lucide="ChevronDown" class="chevron w-5 h-5 text-slate-400 shrink-0"></i>
+        </button>
+        <div class="accordion-body">
+          <div>
+            <div class="px-6 pb-6 pt-1 border-t border-white/10">
+              <p class="mt-4 text-slate-300 leading-relaxed">Pilihan struktur data menentukan performa program saat data membesar. Struktur yang salah artinya program ikut melambat.</p>
+              <ul class="mt-5 space-y-2.5 text-sm text-slate-400">
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Array</strong> — daftar data sejenis berindeks; akses cepat O(1), sisip dan hapus lambat.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Stack (LIFO)</strong> — tumpukan, terakhir masuk pertama keluar; cocok untuk fitur undo.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Queue (FIFO)</strong> — antrian, pertama masuk pertama keluar; untuk antrean proses atau print.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Linked List</strong> — node saling menunjuk; sisip cepat tapi pencarian berurutan.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Tree &amp; Graph</strong> — hierarki dan relasi kompleks; dipakai file system, GPS, dan media sosial.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Hash Map</strong> — penyimpanan kunci-nilai dengan pencarian instan O(1).</span></li>
+              </ul>
+              <div class="mt-5 rounded-2xl bg-purple-500/10 border border-purple-500/20 p-4 text-sm">
+                <p class="font-semibold text-purple-300 flex items-center gap-1.5"><i data-lucide="Lightbulb" class="w-4 h-4"></i> Trik</p>
+                <p class="mt-1.5 text-slate-300">Mau pencarian cepat? Hash Map. Mau antrian FIFO? Queue. Pilih sesuai kebutuhan, bukan yang paling keren.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- OOP -->
+      <article class="accordion-item reveal card-glass rounded-3xl overflow-hidden">
+        <button class="accordion-head w-full flex items-center gap-4 p-6 text-left hover:bg-white/[.03] transition-colors">
+          <span class="icon-box w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-600 grid place-items-center text-white shadow-lg shadow-violet-600/25">
+            <i data-lucide="Shapes" class="w-6 h-6"></i>
+          </span>
+          <span class="flex-1 min-w-0">
+            <span class="block font-bold text-lg leading-snug">Paradigma &amp; OOP</span>
+            <span class="block text-sm text-slate-400 mt-0.5">Cara berpikir dan menata kode — dari instruksi berurutan sampai objek.</span>
+          </span>
+          <i data-lucide="ChevronDown" class="chevron w-5 h-5 text-slate-400 shrink-0"></i>
+        </button>
+        <div class="accordion-body">
+          <div>
+            <div class="px-6 pb-6 pt-1 border-t border-white/10">
+              <p class="mt-4 text-slate-300 leading-relaxed">Paradigma adalah gaya dalam menulis program. <strong class="text-purple-300">OOP</strong> (Object-Oriented Programming) adalah yang paling populer karena mendekati cara pikir dunia nyata.</p>
+              <ul class="mt-5 space-y-2.5 text-sm text-slate-400">
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Prosedural</strong> — instruksi berurutan; contoh C dan Pascal.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Fungsional</strong> — fungsi murni tanpa efek samping; contoh Haskell, sering dipakai dalam Python.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Encapsulation</strong> — sembunyikan detail internal (private).</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Inheritance</strong> — class anak mewarisi sifat class induk.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Polymorphism</strong> — satu antarmuka, banyak bentuk perilaku.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Abstraction</strong> — tampilkan esensi, sembunyikan kompleksitas.</span></li>
+              </ul>
+              <div class="mt-5 rounded-2xl bg-purple-500/10 border border-purple-500/20 p-4 text-sm">
+                <p class="font-semibold text-purple-300 flex items-center gap-1.5"><i data-lucide="Lightbulb" class="w-4 h-4"></i> Mnemonic</p>
+                <p class="mt-1.5 text-slate-300">Ingat 4 pilar OOP sebagai <strong>CEPA</strong> — Capsule, Extend, Poly, Abstract.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Design Pattern -->
+      <article class="accordion-item reveal card-glass rounded-3xl overflow-hidden">
+        <button class="accordion-head w-full flex items-center gap-4 p-6 text-left hover:bg-white/[.03] transition-colors">
+          <span class="icon-box w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 grid place-items-center text-white shadow-lg shadow-indigo-600/25">
+            <i data-lucide="Puzzle" class="w-6 h-6"></i>
+          </span>
+          <span class="flex-1 min-w-0">
+            <span class="block font-bold text-lg leading-snug">Design Pattern</span>
+            <span class="block text-sm text-slate-400 mt-0.5">Solusi teruji untuk masalah desain yang sering muncul.</span>
+          </span>
+          <i data-lucide="ChevronDown" class="chevron w-5 h-5 text-slate-400 shrink-0"></i>
+        </button>
+        <div class="accordion-body">
+          <div>
+            <div class="px-6 pb-6 pt-1 border-t border-white/10">
+              <p class="mt-4 text-slate-300 leading-relaxed">Design pattern adalah &quot;resep&quot; kode yang sudah terbukti, bukan library — tinggal diadaptasi ke masalah nyata yang cocok.</p>
+              <ul class="mt-5 space-y-2.5 text-sm text-slate-400">
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Creational</strong> — mengatur pembuatan objek; contoh Singleton, Factory, Builder.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Structural</strong> — merangkai class dan objek; contoh Adapter, Facade, Proxy.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Behavioral</strong> — komunikasi antar-objek; contoh Observer, Strategy, Command.</span></li>
+                <li class="flex gap-2.5"><i data-lucide="CheckCircle2" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong class="text-slate-200">Manfaatnya</strong> — kode lebih mudah dibaca, dipelihara, dan tim punya bahasa bersama.</span></li>
+              </ul>
+              <div class="mt-5 rounded-2xl bg-purple-500/10 border border-purple-500/20 p-4 text-sm">
+                <p class="font-semibold text-purple-300 flex items-center gap-1.5"><i data-lucide="Lightbulb" class="w-4 h-4"></i> Peringatan</p>
+                <p class="mt-1.5 text-slate-300">Jangan paksakan pattern — gunakan hanya saat masalahnya benar-benar cocok, bukan sekadar biar terlihat pro.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ===================== TOPIK LAIN ===================== -->
+    <div class="mt-16 rounded-3xl card-glass p-6 sm:p-8">
+      <h3 class="reveal font-bold text-lg flex items-center gap-2"><i data-lucide="FolderKanban" class="w-5 h-5 text-purple-400"></i> Lanjut ke kategori lain</h3>
+      <div class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-4" data-stagger>
+        <a href="teori-dasar.html" class="reveal hover-lift rounded-2xl bg-white/[.03] border border-white/10 p-5 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 grid place-items-center text-white shrink-0"><i data-lucide="Network" class="w-5 h-5"></i></span>
+          <span class="font-semibold text-sm">Teori Dasar IT</span>
+          <i data-lucide="ArrowRight" class="w-4 h-4 text-slate-500 ml-auto shrink-0"></i>
+        </a>
+        <a href="database-security.html" class="reveal hover-lift rounded-2xl bg-white/[.03] border border-white/10 p-5 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-red-600 grid place-items-center text-white shrink-0"><i data-lucide="ShieldCheck" class="w-5 h-5"></i></span>
+          <span class="font-semibold text-sm">DB &amp; Security</span>
+          <i data-lucide="ArrowRight" class="w-4 h-4 text-slate-500 ml-auto shrink-0"></i>
+        </a>
+        <a href="trends.html" class="reveal hover-lift rounded-2xl bg-white/[.03] border border-white/10 p-5 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 grid place-items-center text-white shrink-0"><i data-lucide="Rocket" class="w-5 h-5"></i></span>
+          <span class="font-semibold text-sm">Tren Teknologi</span>
+          <i data-lucide="ArrowRight" class="w-4 h-4 text-slate-500 ml-auto shrink-0"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- ===================== PAGINATION ===================== -->
+    <div class="mt-8 flex flex-col sm:flex-row items-stretch justify-between gap-4">
+      <a href="teori-dasar.html" class="reveal group inline-flex items-center gap-3 rounded-2xl card-glass px-6 py-4 hover:bg-white/[.06] transition-colors">
+        <span class="w-10 h-10 rounded-xl bg-white/5 grid place-items-center text-slate-300 group-hover:-translate-x-1 transition-transform"><i data-lucide="ChevronLeft" class="w-5 h-5"></i></span>
+        <span class="text-sm"><span class="block text-slate-500">Halaman sebelumnya</span><span class="block font-semibold">Teori Dasar IT</span></span>
+      </a>
+      <a href="database-security.html" class="reveal group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-purple-500 to-violet-600 px-6 py-4 text-white shadow-lg shadow-purple-600/30 hover:-translate-y-0.5 transition-transform justify-end">
+        <span class="text-sm text-right"><span class="block text-purple-100">Halaman berikutnya</span><span class="block font-semibold">DB &amp; Security</span></span>
+        <span class="w-10 h-10 rounded-xl bg-white/15 grid place-items-center group-hover:translate-x-1 transition-transform"><i data-lucide="ChevronRight" class="w-5 h-5"></i></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a href="index.html" class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-fuchsia-600 grid place-items-center text-white">
+            <i data-lucide="GraduationCap" class="w-4 h-4"></i>
+          </span>
+          <span class="font-bold">IT<span class="text-gradient">Theory</span></span>
+        </a>
+        <p class="text-sm text-slate-500">Belajar teori IT dengan cara yang asyik.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- back to top -->
+  <button id="back-to-top" aria-label="Kembali ke atas"
+    class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-600 text-white grid place-items-center shadow-xl shadow-purple-600/30 opacity-0 pointer-events-none transition-all duration-300 hover:-translate-y-1">
+    <i data-lucide="ChevronUp" class="w-5 h-5"></i>
+  </button>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
